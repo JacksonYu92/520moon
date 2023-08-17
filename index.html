@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Bootstrap 5 Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+        margin: 0;
+        padding: 0;
+       
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .head1{
+      font-family: 'Lobster','Indie Flower';
+    }
+    
+    .btn-danger{
+      position: relative;
+      top: 0px; /* change position here*/
+      /*animation: buttonMove 5s infinite;*/
+    
+    }
+    .btn-primary{
+      position: relative;
+      top: 0px;
+    }
+    img{
+      width: 200px;
+      height: 400px;
+    }
+    
+    @keyframes buttonMove {
+      0%   {top: 0px;}
+      /*75%  {top: 100px;} */
+      50%  {top: 500px;}
+      100% {top:0px;}
+    
+    } 
+    @keyframes buttonMove2{
+      0%   {top: 400px;
+        left:-200px;    }
+    
+      25%  {top: 400px;
+        left:200px; }
+      50%  {top: 400px;
+        left:200px; }
+      75%  {top: 600px;
+        left:100px; }
+      100% {top: 600px;
+        left:-200px; } 
+    }
+</style>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed=""class="bg-image" style="background-image: url('heart2.jpg')">
+    
+    <div class=" container-fluid p-5 text-light text-center page_one">
+        
+        <!-- row of buttons -->
+        <div class="row col-12">
+            <h1 class="text-center head1">你喜欢我吗?</h1>
+            <div class="col-xs-6 p-2"> <button class="btn btn-primary">喜欢！</button></div>
+            <div class="col-xs-6 p-3"> <button class="btn btn-danger" id="no-btn">喜欢个锤子！</button></div>
+
+        </div>
+
+    </div>
+    <div class="page_two hide">
+        <div class="type_words"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+    <script src="js/lib/jquery.min.js" type="text/javascript"></script>
+    <script src="js/lib/jquery.fireworks.js" type="text/javascript"></script>
+    <script>
+        var count = 0;
+        $(document).ready(function () {
+            $('.btn-danger').mouseenter(function () {
+                $('.btn-danger').css('animation', 'buttonMove 0.8s infinite');
+                count++;
+                console.log(count);
+                if(count>=3){
+                  $('.btn-danger').css('animation', '');
+                  $('.btn-danger').css('top','500px');
+                  $('.btn-danger').css('left','-300px');
+                  $('.btn-danger').addClass('animated tada');
+                }
+                if(count>=4){
+                  $('.btn-danger').css('animation', 'buttonMove2  0.5s infinite ');
+                }
+                if(count>=6){
+                  $('.btn-danger').css('animation', '');
+                  $('.btn-danger').addClass('animated shake');
+                  $('#no-btn').css('top','200px');
+                  $('#no-btn').css('left','-400px');
+                }
+                if(count>=7){
+                  $('#no-btn').removeClass('btn-danger').addClass('btn-primary');
+                  $('#no-btn').text('是的！');
+                }
+            });
+    
+            //btn-clicked
+            $('.btn-primary').click(function () {
+                $('.head1').text("哈哈，我也喜欢你！！！");
+                $('.head1').addClass("animated wobble");
+                $('.page_one').addClass('hide');
+                $('.page_two').removeClass('hide');
+                
+                fireworks(); // Call the fireworks function directly
+                
+                console.log("Fireworks function called.");
+                
+                // After 10 seconds, hide fireworks and redirect
+                setTimeout(function () {
+                    $('.page_two').addClass('hide');
+                    window.location.href = 'index4.html'; // Replace with your actual URL
+                }, 10000); // 10000 milliseconds = 10 seconds
+            });
+        });
+    
+        function fireworks() {
+            console.log("Inside fireworks function."); // Check the console for this message
+
+            $('.page_one').addClass('hide');
+            $('.page_two').removeClass('hide');
+            $('.page_two').fireworks({
+                sound: false,
+                opacity: 0.9,
+                width: '100%',
+                height: '100%'
+            });
+        }
+    </script>
+</body>
+</html>
