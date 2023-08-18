@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html >
 <head>
-  <title>Bootstrap 5 Example</title>
+  <title>春春♥梦梦</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -55,10 +55,25 @@
       100% {top: 600px;
         left:-200px; } 
     }
+    video#intro-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 9999; /* Ensure the video is on top */
+  }
+  
+  
 </style>
 </head>
 <body data-new-gr-c-s-check-loaded="14.1120.0" data-gr-ext-installed=""class="bg-image" style="background-image: url('images/heart2.jpg')">
-    
+  <video id="intro-video" autoplay loop muted playsinline>
+    <source src="images/video.mp4" type="video/mp4">
+    <!-- Add more source elements for other video formats -->
+</video>
+
     <div class=" container-fluid p-5 text-light text-center page_one">
         
         <!-- row of buttons -->
@@ -80,6 +95,16 @@
     <script>
         var count = 0;
         $(document).ready(function () {
+            var introVideo = document.getElementById("intro-video");
+
+            // After 2 seconds, hide the video and show other contents
+            setTimeout(function () {
+              introVideo.style.display = "none"; // Hide the video
+              $('.page_one').removeClass('hide'); // Show other contents
+          }, 2000); // 2000 milliseconds = 2 seconds
+      
+          // Start playing the video when the document is ready
+          introVideo.play();
             $('.btn-danger').mouseenter(function () {
                 $('.btn-danger').css('animation', 'buttonMove 0.8s infinite');
                 count++;
