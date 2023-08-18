@@ -320,8 +320,8 @@
     position: absolute;
     left: 47%;
     margin-left: -92.5px;
-    top: 30px;
-    display: none
+    bottom: 30px;
+    display: none;
 }
 
 .logolightSpeedIn {
